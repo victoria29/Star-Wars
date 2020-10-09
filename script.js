@@ -10,7 +10,7 @@ fetch('https://swapi.dev/api/people/')
     .then(e => heroesList(currentHeroList));
 
 function heroesList(list) {
-    for (var i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         (function(i) {
             let hero = document.createElement('div');
             hero.classList.add('hero');
@@ -21,9 +21,7 @@ function heroesList(list) {
             heroBox.classList.add('box');
             heroBox.appendChild(heroName);
             hero.append(heroBox);
-
             heroBox.addEventListener('click', Hero);
-
             heroContainer.append(hero);
             hero.style.opacity = '1';
         })(i);
@@ -31,12 +29,12 @@ function heroesList(list) {
 }
 
 function Hero(event) {
-    heroContainer.parentElement.style.height = '0px';
+    heroContainer.parentElement.classList.toggle('zero_height');
     heroContainer.style.display = 'none';
     heroData.style.display = 'block';
     button.style.display = 'block';
     button.style.position = 'absolute';
-    heroContainer.parentElement.style.height = '430px';
+    heroContainer.parentElement.classList.toggle('main_height');
 
     let selectedHero;
     for (let i = 0; i < currentHeroList.length; i++) {
@@ -79,7 +77,6 @@ function getData(hero, info) {
     } else {
         info.innerText = 'Human';
     }
-
 }
 
 function getFilms(hero) {
